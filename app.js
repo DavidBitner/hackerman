@@ -86,8 +86,10 @@ function printNextChunk() {
 
 // Função unificada para tratar teclado e toque
 const handleInteraction = (e) => {
-  // Opcional: previne zoom duplo em alguns celulares
-  // e.preventDefault();
+  // Bloqueia atalhos nativos (como "/" ou "'") e comportamentos de scroll/zoom indesejados
+  if (e.cancelable) {
+    e.preventDefault();
+  }
   printNextChunk();
 };
 
