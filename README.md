@@ -6,12 +6,17 @@ A retro green-phosphor terminal that types code as you press keys. No build step
 
 Open `index.html` in a browser, or serve the folder with any static server.
 
-| Input                 | Action                      |
-| --------------------- | --------------------------- |
+| Input | Action |
+| --- | --- |
 | Any key / click / tap | Type the next chunk of code |
-| `Enter`               | Show **ACCESS GRANTED**     |
-| `Esc`                 | Show **ACCESS DENIED**      |
-| `↑` / `↓`             | Raise / lower typing speed  |
+| `Enter` | Show **ACCESS GRANTED** |
+| `Esc` | Show **ACCESS DENIED** |
+| `↑` / `↓` | Raise / lower typing speed |
+| `Tab` | Open a fake program window (also appears at random) |
+| `F2` | Toggle auto-type |
+| `Alt+Enter` | Toggle fullscreen |
+
+The `AUTO` and `FULL` buttons appear in the top-right corner when the mouse moves or the screen is tapped.
 
 Browser shortcuts such as `Ctrl+R`, `F5` and `F12` keep working.
 
@@ -21,6 +26,7 @@ Browser shortcuts such as `Ctrl+R`, `F5` and `F12` keep working.
 - `style.css` – glow, scanlines, vignette and flicker
 - `app.js` – boot sequence, typing logic and input handling
 - `snippets.js` – the code blocks that get typed; add your own as arrays of lines
+- `programs.js` – the animated fake program windows
 
 ## License
 

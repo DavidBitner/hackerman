@@ -23,10 +23,19 @@
     <main id="terminal">
       <div id="screen"></div>
     </main>
+    <div id="window" hidden>
+      <div id="window-bar"><span id="window-title"></span><span>[X]</span></div>
+      <pre id="window-body"></pre>
+    </div>
+    <div id="controls">
+      <button type="button" id="btn-auto" aria-pressed="false">AUTO</button>
+      <button type="button" id="btn-full" aria-pressed="false">FULL</button>
+    </div>
     <div id="banner" role="status" aria-live="assertive" hidden></div>
     <div id="status" role="status" aria-live="polite"></div>
     <noscript>This terminal needs JavaScript to run.</noscript>
     <script src="snippets.js"></script>
+    <script src="programs.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
