@@ -2,6 +2,8 @@
 
 A retro green-phosphor terminal that types code as you press keys. No build step, no dependencies.
 
+**[Live demo](https://davidbitner.github.io/hackerman/)**
+
 ## Usage
 
 Open `index.html` in a browser, or serve the folder with any static server.
