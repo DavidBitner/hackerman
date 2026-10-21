@@ -1,15 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="A retro green-phosphor terminal that types code as you press keys."
+    />
+    <meta name="theme-color" content="#010603" />
+    <title>Hackerman</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23010603'/%3E%3Cpath d='M3 4l4 4-4 4M8 12h5' stroke='%232bff6e' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Hackerman</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <div id="terminal"></div>
-  <script src="app.js"></script>
-</body>
-
+  <body>
+    <main id="terminal">
+      <div id="screen"></div>
+    </main>
+    <div id="banner" role="status" aria-live="assertive" hidden></div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <noscript>This terminal needs JavaScript to run.</noscript>
+    <script src="snippets.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

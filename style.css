@@ -1,28 +1,184 @@
+:root {
+  --bg: #010603;
+  --fg: #2bff6e;
+  --danger: #ff4a3d;
+  --glow: 0 0 4px rgba(43, 255, 110, 0.7), 0 0 14px rgba(43, 255, 110, 0.3);
+  --glow-danger:
+    0 0 4px rgba(255, 74, 61, 0.8), 0 0 18px rgba(255, 74, 61, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
 body {
-  background-color: black;
-  color: #00ff00;
-  font-family: monospace;
-  font-size: 16px;
+  height: 100%;
   margin: 0;
-  padding: 20px;
+  background: var(--bg);
+}
+
+body {
+  color: var(--fg);
+  font-family:
+    "Cascadia Mono", Consolas, "SF Mono", Menlo, ui-monospace, monospace;
   overflow: hidden;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 #terminal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: max(20px, env(safe-area-inset-top))
+    max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom))
+    max(20px, env(safe-area-inset-left));
+  text-shadow: var(--glow);
+  animation: flicker 7s infinite;
+}
+
+#terminal::before,
+#terminal::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#terminal::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+#terminal::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.28) 3px
+  );
+}
+
+#screen {
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
   line-height: 1.4;
+  font-size: clamp(14px, 1.5vw + 8px, 19px);
 }
 
 .cursor {
   display: inline-block;
-  width: 10px;
-  height: 1em;
-  background-color: #00ff00;
+  width: 0.6em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--fg);
+  box-shadow: var(--glow);
   animation: blink 1s steps(1) infinite;
+}
+
+#banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.4em 0.9em;
+  font-size: clamp(26px, 7vw, 72px);
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  background: rgba(0, 6, 2, 0.88);
+  border: 4px solid currentColor;
+  animation: pulse 0.6s steps(2) infinite;
+}
+
+#banner.granted {
+  color: var(--fg);
+  text-shadow: var(--glow);
+  box-shadow: var(--glow);
+}
+
+#banner.denied {
+  color: var(--danger);
+  text-shadow: var(--glow-danger);
+  box-shadow: var(--glow-danger);
+}
+
+#status {
+  position: fixed;
+  right: 20px;
+  bottom: 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transition: opacity 0.2s;
+  text-shadow: var(--glow);
+}
+
+#status.visible {
+  opacity: 0.85;
+}
+
+noscript {
+  position: fixed;
+  top: 20px;
+  left: 20px;
 }
 
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.93;
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.96;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #terminal,
+  #banner {
+    animation: none;
+  }
+
+  .cursor {
+    animation: none;
   }
 }
